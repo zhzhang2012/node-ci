@@ -1,0 +1,27 @@
+{
+  "name": "nodejs-ci",
+  "version": "1.0.0",
+  "author": {
+    "name": "Tony Zhang",
+    "url": "http://zhzhangtony.com"
+  },
+  "bin": {
+    "nodeci": "./bin/nodejs-ci.js"
+  },
+  "engines": {
+    "node": ">=0.8.0"
+  },
+  "description": "Initiates A Node.js scaffold that allows fast testing, deploying and hosting",
+  "preferGlobal": "true",
+  "license": "MIT",
+  "devDependencies": {
+    "cli-color": "^1.0.0",
+    "commander": "^2.8.1",
+    "path": "^0.12.7"
+  },
+  "dependencies": {
+    "grunt": "^0.4.5",
+    "grunt-init": "^0.3.2",
+    "shelljs": "^0.5.3"
+  }
+}

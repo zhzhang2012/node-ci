@@ -1,0 +1,22 @@
+#ignore files
+
+.DS_Store
+
+lib-cov
+*.seed
+*.log
+*.csv
+*.dat
+*.out
+*.pid
+*.gz
+
+pids
+logs
+results
+
+npm-debug.log
+node_modules
+coverage
+tmp
+test/fixtures/test*
