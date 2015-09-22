@@ -14,7 +14,8 @@ var program = require('commander'),
     path = require('path');
 
 var createProject = function () {
-    var child = shell.exec('npm install -g grunt-init && grunt-init ../lib/bootstrap', {async: true});
+    var cloneTemplateChild = shell.exec('git clone https://github.com/zhzhang2012/nodejs-ci.git ~/.grunt-init/nodeci');
+    var child = shell.exec('npm install -g grunt-init && grunt-init nodeci/bootstrap', {async: true});
     child.stdout.on('data', function (data) {
         console.log(data);
         //if (code !== 0) {
