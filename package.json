@@ -17,7 +17,9 @@
   "devDependencies": {
     "cli-color": "^1.0.0",
     "commander": "^2.8.1",
-    "path": "^0.12.7"
+    "es6-promise": "^3.0.2",
+    "path": "^0.12.7",
+    "prompt": "^0.2.14"
   },
   "dependencies": {
     "grunt": "^0.4.5",
