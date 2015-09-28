@@ -3,6 +3,6 @@
   "app-dev/server.js": "{%= name %}-dev/server.js",
   "app-prod/index.html": "{%= name %}-prod/index.html",
   "app-prod/server.js": "{%= name %}-prod/server.js",
-  "app-prod/index.html": "{%= name %}-test/index.html",
-  "app-prod/server.js": "{%= name %}-test/server.js"
+  "app-test/index.html": "{%= name %}-test/index.html",
+  "app-test/server.js": "{%= name %}-test/server.js"
 }

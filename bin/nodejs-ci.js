@@ -43,7 +43,6 @@ var createProject = function () {
                 process.stdout.write('\n');
                 resolve();
             }
-
         });
     });
 
@@ -74,7 +73,7 @@ var createProject = function () {
                 }
             });
         }).catch(function (code) {
-            process.stdout.write(clc.red("Error occurred while installing dependencies: " + code));
+            process.stdout.write(clc.red("Error occurred while installing dependencies: " + code + '\n'));
             process.exit(1);
         });
 };
@@ -84,8 +83,12 @@ var configGit = function () {
 
     prompt.start();
     prompt.get([{
+        name: 'name',
+        description: 'Please enter the name of your app [THE SAME NAME AS IN package.json]',
+        required: true
+    }, {
         name: 'origin',
-        description: 'Please enter your origin git repository: ',
+        description: 'Please enter your origin git repository',
         type: 'string',
         required: true
     }, {
@@ -95,80 +98,98 @@ var configGit = function () {
         required: false
     }], function (err, result) {
         if (err) {
-            process.stdout.write(clc.red("Error occurred when initializing git remotes" + err));
+            process.stdout.write(clc.red("Error occurred when initializing git remotes" + err + '\n'));
             process.exit(1);
         }
 
+        var projectName = result.name;
+
         process.stdout.write(clc.cyanBright('Start configuring master (app-prod) branch...\n'));
-        exec('cd app-prod && git init && git remote add origin ' + result.origin,
+        exec('cd ' + projectName + '-prod && git init && git remote add origin ' + result.origin,
             function (error, stdout, stderr) {
                 process.stdout.write(stdout);
                 if (error !== null) {
                     process.stdout.write(clc.red('exec error: ' + error));
+                } else {
+                    process.stdout.write(clc.cyanBright('Finished.'));
                 }
             });
 
         if (typeof result.upstream !== 'undefined') {
-            exec('cd app-prod && git remote add upstream ' + result.origin,
+            exec('cd ' + projectName + '-prod && git remote add upstream ' + result.origin,
                 function (error, stdout, stderr) {
                     process.stdout.write(stdout);
                     if (error !== null) {
                         process.stdout.write(clc.red('exec error: ' + error));
+                    } else {
+                        process.stdout.write(clc.cyanBright('Finished.'));
                     }
                 });
         }
 
         process.stdout.write(clc.cyanBright('Start configuring development (app-dev) branch...\n'));
-        exec('cd app-dev && git init && git remote add origin ' + result.origin,
+        exec('cd ' + projectName + '-dev && git init && git remote add origin ' + result.origin,
             function (error, stdout, stderr) {
                 process.stdout.write(stdout);
                 if (error !== null) {
                     process.stdout.write(clc.red('exec error: ' + error));
+                } else {
+                    process.stdout.write(clc.cyanBright('Finished.'));
                 }
             });
 
         if (typeof result.upstream !== 'undefined') {
-            exec('cd app-dev && git remote add upstream ' + result.origin,
+            exec('cd ' + projectName + '-dev && git remote add upstream ' + result.origin,
                 function (error, stdout, stderr) {
                     process.stdout.write(stdout);
                     if (error !== null) {
                         process.stdout.write(clc.red('exec error: ' + error));
+                    } else {
+                        process.stdout.write(clc.cyanBright('Finished.'));
                     }
                 });
         }
 
         // configuring branch
-        exec('cd app-dev && git checkout -b dev master', function (error, stdout, stderr) {
+        exec('cd ' + projectName + '-dev && git checkout -b dev master', function (error, stdout, stderr) {
             process.stdout.write(stdout);
             if (error !== null) {
                 process.stdout.write(clc.red('exec error: ' + error));
+            } else {
+                process.stdout.write(clc.cyanBright('Finished.'));
             }
         });
 
         process.stdout.write(clc.cyanBright('Start configuring test (app-test) branch...\n'));
-        exec('cd app-test && git init && git remote add origin ' + result.origin,
+        exec('cd ' + projectName + '-test && git init && git remote add origin ' + result.origin,
             function (error, stdout, stderr) {
                 process.stdout.write(stdout);
                 if (error !== null) {
                     process.stdout.write(clc.red('exec error: ' + error));
+                } else {
+                    process.stdout.write(clc.cyanBright('Finished.'));
                 }
             });
 
         if (typeof result.upstream !== 'undefined') {
-            exec('cd app-test && git remote add upstream ' + result.origin,
+            exec('cd ' + projectName + '-test && git remote add upstream ' + result.origin,
                 function (error, stdout, stderr) {
                     process.stdout.write(stdout);
                     if (error !== null) {
                         process.stdout.write(clc.red('exec error: ' + error));
+                    } else {
+                        process.stdout.write(clc.cyanBright('Finished.'));
                     }
                 });
         }
 
         // configuring branch
-        exec('cd app-test && git checkout -b test master', function (error, stdout, stderr) {
+        exec('cd ' + projectName + '-test && git checkout -b test master', function (error, stdout, stderr) {
             process.stdout.write(stdout);
             if (error !== null) {
                 process.stdout.write(clc.red('exec error: ' + error));
+            } else {
+                process.stdout.write(clc.cyanBright('Finished.'));
             }
         });
     });

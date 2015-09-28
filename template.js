@@ -25,12 +25,6 @@ exports.warnOn = 'Dockerfile';
 
 // Project configurations starting here
 exports.template = function (grunt, init, done) {
-    //grunt.file.mkdir(path.join(init.destpath(), 'app-dev'));
-    //grunt.file.copy(path.join(init.userDir(), 'root', 'app-dev', 'index.html'));
-    //grunt.file.copy(path.join(init.userDir(), 'root', 'app-dev', 'server.js'));
-    //grunt.file.mkdir(path.join(init.destpath(), 'root', 'app-prod'));
-    //grunt.file.mkdir(path.join(init.destpath(), 'root', 'app-test'));
-
     init.process({type: 'node'}, [
         // Prompt for these values.
         init.prompt('name'),
